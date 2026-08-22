@@ -22,7 +22,10 @@ layout="wide"
 # ============================================================
 
 st.title("Gesture-X")
-st.subheader("Autonomous Robotic Navigation & Gesture Control")
+
+st.subheader(
+"Autonomous Robotic Navigation & Gesture Control"
+)
 
 st.markdown(
 """
@@ -60,7 +63,9 @@ step=25
 
 st.sidebar.divider()
 
-st.sidebar.markdown("### System Features")
+st.sidebar.markdown(
+"### System Features"
+)
 
 st.sidebar.markdown(
 """
@@ -127,7 +132,7 @@ battery = 87.4
 front_distance = 1.42
 front_left_distance = 1.18
 front_right_distance = 1.65
-left_distance = 2.0
+left_distance = 2.00
 right_distance = 1.72
 back_distance = 1.95
 
@@ -138,19 +143,33 @@ target_y - robot_y
 
 # ============================================================
 
-# STATUS
+# SYSTEM STATUS
 
 # ============================================================
 
 if mode == "Autonomous":
-    robot_status = "NAVIGATING"
-    navigation_state = "A* ROUTE ACTIVE"
+
+
+robot_status = "NAVIGATING"
+
+navigation_state = "A* ROUTE ACTIVE"
+
+
 elif mode == "Manual":
-    robot_status = "MANUAL CONTROL"
-    navigation_state = "USER CONTROL"
+
+
+robot_status = "MANUAL CONTROL"
+
+navigation_state = "USER CONTROL"
+
+
 else:
-    robot_status = "GESTURE CONTROL"
-    navigation_state = "VISION INPUT ACTIVE"
+
+
+robot_status = "GESTURE CONTROL"
+
+navigation_state = "VISION INPUT ACTIVE"
+
 
 # ============================================================
 
@@ -161,29 +180,41 @@ else:
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
+
+
 st.metric(
-"Battery",
-f"{battery:.1f}%",
-"NORMAL"
+    "Battery",
+    f"{battery:.1f}%",
+    "NORMAL"
 )
+
 
 with col2:
+
+
 st.metric(
-"Position",
-f"{robot_x:.1f}, {robot_y:.1f}"
+    "Position",
+    f"{robot_x:.1f}, {robot_y:.1f}"
 )
+
 
 with col3:
+
+
 st.metric(
-"Heading",
-f"{heading}°"
+    "Heading",
+    f"{heading}°"
 )
 
+
 with col4:
+
+
 st.metric(
-"Target Distance",
-f"{distance_to_target:.2f} m"
+    "Target Distance",
+    f"{distance_to_target:.2f} m"
 )
+
 
 # ============================================================
 
@@ -191,7 +222,9 @@ f"{distance_to_target:.2f} m"
 
 # ============================================================
 
-left, right = st.columns([2.2, 1])
+left, right = st.columns(
+[2.2, 1]
+)
 
 # ============================================================
 
@@ -200,19 +233,31 @@ left, right = st.columns([2.2, 1])
 # ============================================================
 
 with left:
-
-```
-st.markdown("### Robotics Environment")
+st.markdown(
+    "### Robotics Environment"
+)
 
 fig, ax = plt.subplots(
     figsize=(9, 6)
 )
 
-ax.set_xlim(0, WIDTH)
-ax.set_ylim(0, HEIGHT)
+ax.set_xlim(
+    0,
+    WIDTH
+)
 
-ax.set_xlabel("X Position (m)")
-ax.set_ylabel("Y Position (m)")
+ax.set_ylim(
+    0,
+    HEIGHT
+)
+
+ax.set_xlabel(
+    "X Position (m)"
+)
+
+ax.set_ylabel(
+    "Y Position (m)"
+)
 
 ax.set_title(
     "Gesture-X Navigation Environment"
@@ -224,8 +269,9 @@ ax.grid(
     alpha=0.35
 )
 
+
 # --------------------------------------------------------
-# Boundary
+# BOUNDARY
 # --------------------------------------------------------
 
 boundary = patches.Rectangle(
@@ -236,10 +282,13 @@ boundary = patches.Rectangle(
     linewidth=2
 )
 
-ax.add_patch(boundary)
+ax.add_patch(
+    boundary
+)
+
 
 # --------------------------------------------------------
-# Obstacles
+# OBSTACLES
 # --------------------------------------------------------
 
 for x, y, width, height in obstacles:
@@ -253,7 +302,10 @@ for x, y, width, height in obstacles:
         alpha=0.25
     )
 
-    ax.add_patch(obstacle)
+    ax.add_patch(
+        obstacle
+    )
+
 
     for level in range(1, 3):
 
@@ -266,6 +318,7 @@ for x, y, width, height in obstacles:
             [shelf_y, shelf_y],
             linewidth=1
         )
+
 
 # --------------------------------------------------------
 # A* PATH
@@ -289,6 +342,7 @@ ax.plot(
     label="A* Route"
 )
 
+
 # --------------------------------------------------------
 # TARGET
 # --------------------------------------------------------
@@ -307,8 +361,13 @@ target_inner = patches.Circle(
     linewidth=2
 )
 
-ax.add_patch(target_outer)
-ax.add_patch(target_inner)
+ax.add_patch(
+    target_outer
+)
+
+ax.add_patch(
+    target_inner
+)
 
 ax.text(
     target_x,
@@ -317,6 +376,7 @@ ax.text(
     ha="center",
     fontsize=9
 )
+
 
 # --------------------------------------------------------
 # ROBOT
@@ -328,25 +388,33 @@ robot = patches.Circle(
     linewidth=2
 )
 
-ax.add_patch(robot)
+ax.add_patch(
+    robot
+)
+
 
 # --------------------------------------------------------
 # ROBOT HEADING
 # --------------------------------------------------------
 
-angle = math.radians(heading)
+angle = math.radians(
+    heading
+)
 
 ax.plot(
     [
         robot_x,
-        robot_x + 0.55 * math.cos(angle)
+        robot_x
+        \+ 0.55 * math.cos(angle)
     ],
     [
         robot_y,
-        robot_y + 0.55 * math.sin(angle)
+        robot_y
+        \+ 0.55 * math.sin(angle)
     ],
     linewidth=3
 )
+
 
 # --------------------------------------------------------
 # SENSOR RAYS
@@ -371,6 +439,7 @@ sensor_distances = [
     back_distance,
     back_distance
 ]
+
 
 for sensor_angle, distance in zip(
     sensor_angles,
@@ -399,15 +468,17 @@ for sensor_angle, distance in zip(
         alpha=0.5
     )
 
+
 ax.legend(
     loc="upper left"
 )
+
 
 st.pyplot(
     fig,
     use_container_width=True
 )
-```
+
 
 # ============================================================
 
@@ -417,47 +488,76 @@ st.pyplot(
 
 with right:
 
-```
-st.markdown("### System Status")
 
-st.success(
-    f"MODE: {mode.upper()}"
+st.markdown(
+    "### System Status"
 )
+
+
+if mode == "Autonomous":
+
+    st.success(
+        f"MODE: {mode.upper()}"
+    )
+
+elif mode == "Manual":
+
+    st.info(
+        f"MODE: {mode.upper()}"
+    )
+
+else:
+
+    st.warning(
+        f"MODE: {mode.upper()}"
+    )
+
 
 st.info(
     navigation_state
 )
 
-st.markdown("### Navigation")
 
-st.write(
-    f"Robot Position: ({robot_x:.2f}, {robot_y:.2f})"
+st.markdown(
+    "### Navigation"
 )
 
 st.write(
-    f"Target Position: ({target_x:.2f}, {target_y:.2f})"
+    f"Robot Position: "
+    f"({robot_x:.2f}, {robot_y:.2f})"
 )
 
 st.write(
-    f"Distance to Target: {distance_to_target:.2f} m"
+    f"Target Position: "
+    f"({target_x:.2f}, {target_y:.2f})"
+)
+
+st.write(
+    f"Distance to Target: "
+    f"{distance_to_target:.2f} m"
 )
 
 st.write(
     f"A* Waypoints: {len(path)}"
 )
 
-st.markdown("### LiDAR-Inspired Sensors")
+
+st.markdown(
+    "### LiDAR-Inspired Sensors"
+)
 
 st.write(
     f"Front: {front_distance:.2f} m"
 )
 
 st.write(
-    f"Front-Left: {front_left_distance:.2f} m"
+    f"Front-Left: "
+    f"{front_left_distance:.2f} m"
 )
 
 st.write(
-    f"Front-Right: {front_right_distance:.2f} m"
+    f"Front-Right: "
+    f"{front_right_distance:.2f} m"
 )
 
 st.write(
@@ -472,19 +572,35 @@ st.write(
     f"Back: {back_distance:.2f} m"
 )
 
-st.markdown("### Power")
+
+st.markdown(
+    "### Power"
+)
+
 
 if battery <= 5:
-    st.error("CRITICAL BATTERY")
+
+    st.error(
+        "CRITICAL BATTERY"
+    )
+
 elif battery <= 20:
-    st.warning("LOW BATTERY")
+
+    st.warning(
+        "LOW BATTERY"
+    )
+
 else:
-    st.success("BATTERY NORMAL")
+
+    st.success(
+        "BATTERY NORMAL"
+    )
+
 
 st.progress(
     battery / 100
 )
-```
+
 
 # ============================================================
 
@@ -494,25 +610,61 @@ st.progress(
 
 st.divider()
 
-st.markdown("### Gesture Control")
+st.markdown(
+"### Gesture Control"
+)
 
-gesture_col1, gesture_col2, gesture_col3, gesture_col4 = st.columns(4)
+gesture_col1, gesture_col2, gesture_col3, gesture_col4 = (
+st.columns(4)
+)
 
 with gesture_col1:
-st.write("Forward")
-st.code("MOVE_FORWARD")
+
+
+st.write(
+    "Forward"
+)
+
+st.code(
+    "MOVE_FORWARD"
+)
+
 
 with gesture_col2:
-st.write("Backward")
-st.code("MOVE_BACKWARD")
+
+
+st.write(
+    "Backward"
+)
+
+st.code(
+    "MOVE_BACKWARD"
+)
+
 
 with gesture_col3:
-st.write("Left / Right")
-st.code("TURN_LEFT / TURN_RIGHT")
+
+
+st.write(
+    "Left / Right"
+)
+
+st.code(
+    "TURN_LEFT / TURN_RIGHT"
+)
+
 
 with gesture_col4:
-st.write("Stop")
-st.code("STOP")
+
+
+st.write(
+    "Stop"
+)
+
+st.code(
+    "STOP"
+)
+
 
 st.caption(
 "Gesture-X uses computer vision and MediaPipe hand tracking "
@@ -527,24 +679,51 @@ st.caption(
 
 st.divider()
 
-st.markdown("### Technology Stack")
+st.markdown(
+"### Technology Stack"
+)
 
 tech1, tech2, tech3, tech4, tech5 = st.columns(5)
 
 with tech1:
-st.write("Python")
+
+
+st.write(
+    "Python"
+)
+
 
 with tech2:
-st.write("OpenCV")
+
+
+st.write(
+    "OpenCV"
+)
+
 
 with tech3:
-st.write("MediaPipe")
+
+
+st.write(
+    "MediaPipe"
+)
+
 
 with tech4:
-st.write("A* Path Planning")
+
+
+st.write(
+    "A* Path Planning"
+)
+
 
 with tech5:
-st.write("Matplotlib")
+
+
+st.write(
+    "Matplotlib"
+)
+
 
 st.markdown(
 """
