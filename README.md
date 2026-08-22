@@ -8,7 +8,7 @@ The system supports autonomous navigation toward a target, keyboard-based manual
 
 ## Live Demo
 
-**Live Demo:** [View Gesture-X Demo](YOUR_LIVE_DEMO_LINK_HERE)
+**Dashboard:** (https://gesture-x.streamlit.app/)
 
 The demonstration showcases autonomous navigation, A* path planning, LiDAR-inspired obstacle detection, real-time telemetry, and camera-based hand gesture control.
 
