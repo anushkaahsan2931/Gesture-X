@@ -143,14 +143,14 @@ target_y - robot_y
 # ============================================================
 
 if mode == "Autonomous":
-robot_status = "NAVIGATING"
-navigation_state = "A* ROUTE ACTIVE"
+    robot_status = "NAVIGATING"
+    navigation_state = "A* ROUTE ACTIVE"
 elif mode == "Manual":
-robot_status = "MANUAL CONTROL"
-navigation_state = "USER CONTROL"
+    robot_status = "MANUAL CONTROL"
+    navigation_state = "USER CONTROL"
 else:
-robot_status = "GESTURE CONTROL"
-navigation_state = "VISION INPUT ACTIVE"
+    robot_status = "GESTURE CONTROL"
+    navigation_state = "VISION INPUT ACTIVE"
 
 # ============================================================
 
